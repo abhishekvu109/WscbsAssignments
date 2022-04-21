@@ -13,4 +13,7 @@ public interface UrlShortenerRepository extends JpaRepository<UrlShortenerEntity
     UrlShortenerEntity findByUrlHash(String urlHash);
 
     List<UrlShortenerEntity> findByUserId(String userid);
+
+    UrlShortenerEntity findByUserIdAndRefId(String userId,String refId);
+    
 }

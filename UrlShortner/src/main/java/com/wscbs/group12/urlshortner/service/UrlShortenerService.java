@@ -16,6 +16,10 @@ public interface UrlShortenerService {
 
     boolean deleteByRefId(String refId);
 
+    boolean deleteByUserIdAndRefId(String userId, String refId);
+
+    UrlShortenerResponse getShortUrlByUserIdAndRefId(String userId, String refId);
+
     List<UrlShortenerResponse> getAllKeys();
 
 }

@@ -39,7 +39,7 @@ public class UserController {
         UserResponse response = userService.create(userRequest);
         if (response == null)
             return ResponseEntityBuilder.getBuilder(HttpStatus.BAD_REQUEST).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unable to create the User");
-        return ResponseEntityBuilder.getBuilder(HttpStatus.CREATED).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, response);
+        return ResponseEntityBuilder.getBuilder(HttpStatus.OK).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, response);
     }
 
     @GetMapping(value = UrlConstants.USER_GET_BY_ID, produces = ApplicationConstants.APPLICATION_JSON)

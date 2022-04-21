@@ -1,4 +1,4 @@
-package com.wscbs.group12.urlshortner.user.constants;
+package com.wscbs.group12.urlshortner.utility.discoveryservice.constants;
 
 public class ApplicationConstants {
     public static final String APPLICATION_JSON = "application/json";
@@ -9,11 +9,9 @@ public class ApplicationConstants {
     public static final String REQUEST_FAILURE_DESCRIPTION = "FAILED";
     public static final String DOMAIN_NAME = "https://group12.com/";
     public static final int KEY_LENGTH = 6;
-    public static final String APP_SERVICE_NAME = "USERAUTH";
 
     public enum AppStatus {
         ACTIVE, INACTIVE
     }
-
 
 }

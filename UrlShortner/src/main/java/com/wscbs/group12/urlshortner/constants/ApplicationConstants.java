@@ -12,5 +12,6 @@ public class ApplicationConstants {
     public enum AppStatus {
         ACTIVE, INACTIVE
     }
+    public static final String APP_SERVICE_NAME = "URLSHORTENER";
 
 }

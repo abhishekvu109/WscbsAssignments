@@ -1,6 +1,6 @@
-package com.wscbs.group12.urlshortner.user.model.rest;
+package com.wscbs.group12.urlshortner.utility.discoveryservice.model.rest;
 
-import com.wscbs.group12.urlshortner.user.constants.ApplicationConstants;
+import com.wscbs.group12.urlshortner.utility.discoveryservice.constants.ApplicationConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class ResponseEntityBuilder {
         return new ResponseEntity<>(response, httpStatus);
     }
 
-    public ResponseEntity<RestApiResponse>errorResponse(String code, String message) {
+    public ResponseEntity<RestApiResponse> errorResponse(String code, String message) {
         RestApiResponse response = RestApiResponse.buildFailureResponse(code, message);
         return new ResponseEntity<>(response, httpStatus);
     }

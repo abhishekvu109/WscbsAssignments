@@ -44,7 +44,7 @@ public class LoginController {
                 return ResponseEntityBuilder.getBuilder(HttpStatus.OK).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, Collections.singletonMap("jwt-token", token));
             }
         } catch (AuthenticationException ex) {
-            return ResponseEntityBuilder.getBuilder(HttpStatus.UNAUTHORIZED).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "User is not authorized to login");
+            return ResponseEntityBuilder.getBuilder(HttpStatus.FORBIDDEN).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "User is not authorized to login");
         }
         return ResponseEntityBuilder.getBuilder(HttpStatus.FORBIDDEN).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Some issue");
     }

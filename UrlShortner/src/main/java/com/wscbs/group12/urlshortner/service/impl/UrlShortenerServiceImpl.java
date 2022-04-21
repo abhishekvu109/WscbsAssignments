@@ -60,6 +60,16 @@ public class UrlShortenerServiceImpl implements UrlShortenerService {
     }
 
     @Override
+    public UrlShortenerResponse getShortUrlByUserIdAndRefId(String userId,String refId) {
+        UrlShortenerEntity shortenerEntities = urlShortenerRepository.findByUserIdAndRefId(userId,refId);
+        if (shortenerEntities==null) {
+            log.error("Object not found - {}", userId);
+            throw new UrlShortenerException(ResponseErrorCode.UNKNOWN_ERROR, ErrorCode.UNKNOWN_ERROR, "Object not found");
+        }
+        return urlShortenerImplHelper.buildResponseFromEntity(shortenerEntities);
+    }
+
+    @Override
     @Transactional
     public UrlShortenerResponse updateUrl(String refId, UrlShortenerRequest request) {
         UrlShortenerEntity urlShortenerEntity = urlShortenerRepository.findByRefId(refId);
@@ -75,6 +85,18 @@ public class UrlShortenerServiceImpl implements UrlShortenerService {
     @Transactional
     public boolean deleteByRefId(String refId) {
         UrlShortenerEntity urlShortenerEntity = urlShortenerRepository.findByRefId(refId);
+        if (urlShortenerEntity == null) {
+            log.error("Object not found - {}", refId);
+            throw new UrlShortenerException(ResponseErrorCode.UNKNOWN_ERROR, ErrorCode.UNKNOWN_ERROR, "Object not found");
+        }
+        urlShortenerRepository.delete(urlShortenerEntity);
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteByUserIdAndRefId(String userId,String refId) {
+        UrlShortenerEntity urlShortenerEntity = urlShortenerRepository.findByUserIdAndRefId(userId,refId);
         if (urlShortenerEntity == null) {
             log.error("Object not found - {}", refId);
             throw new UrlShortenerException(ResponseErrorCode.UNKNOWN_ERROR, ErrorCode.UNKNOWN_ERROR, "Object not found");

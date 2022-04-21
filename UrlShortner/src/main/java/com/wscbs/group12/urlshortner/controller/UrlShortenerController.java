@@ -3,6 +3,7 @@ package com.wscbs.group12.urlshortner.controller;
 import com.wscbs.group12.urlshortner.constants.ApplicationConstants;
 import com.wscbs.group12.urlshortner.constants.UrlConstants;
 import com.wscbs.group12.urlshortner.entities.UserEntity;
+import com.wscbs.group12.urlshortner.exceptions.UrlShortenerException;
 import com.wscbs.group12.urlshortner.model.UrlShortenerRequest;
 import com.wscbs.group12.urlshortner.model.UrlShortenerResponse;
 import com.wscbs.group12.urlshortner.model.rest.ResponseEntityBuilder;
@@ -26,7 +27,7 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UrlShortenerController {
 
-  
+
     private final UrlShortenerService urlShortenerService;
     private final RequestValidator validator;
     private final UserRepository userRepository;
@@ -35,30 +36,37 @@ public class UrlShortenerController {
     public @ResponseBody
     ResponseEntity<RestApiResponse>
     getShortUrlById(@PathVariable String refId) {
+        ResponseEntity<RestApiResponse> restApiResponseResponseEntity = null;
         UserEntity userEntity = getAuthenticatedUser();
         if (userEntity == null)
             return ResponseEntityBuilder.getBuilder(HttpStatus.UNAUTHORIZED).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
         log.info("Received a request to fetch Short Url Data : {}", refId);
-        UrlShortenerResponse response = urlShortenerService.getShortUrlByRefId(refId);
+        UrlShortenerResponse response =null;
+        try{
+            response = urlShortenerService.getShortUrlByRefId(refId);
+        }catch(UrlShortenerException e1){
+            log.error("{}",e1);
+            return ResponseEntityBuilder.getBuilder(HttpStatus.NOT_FOUND).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Object not found");
+        }
         if (response == null)
             return ResponseEntityBuilder.getBuilder(HttpStatus.NOT_FOUND).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Object not found");
         return ResponseEntityBuilder.getBuilder(HttpStatus.MOVED_PERMANENTLY).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, response);
     }
 
-    @GetMapping(value = UrlConstants.URL_GET_BY_USER, produces = ApplicationConstants.APPLICATION_JSON)
-    public @ResponseBody
-    ResponseEntity<RestApiResponse>
-    getShortUrlByUser(@PathVariable String userId) {
-        UserEntity userEntity = getAuthenticatedUser();
-        if (userEntity == null)
-            return ResponseEntityBuilder.getBuilder(HttpStatus.UNAUTHORIZED).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
-
-        log.info("Received a request to fetch Short Url Data by UserId : {}", userId);
-        List<UrlShortenerResponse> response = urlShortenerService.getShortUrlByUserId(userId);
-        if (response == null)
-            return ResponseEntityBuilder.getBuilder(HttpStatus.NOT_FOUND).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "No data found for the user");
-        return ResponseEntityBuilder.getBuilder(HttpStatus.OK).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, response);
-    }
+//    @GetMapping(value = UrlConstants.URL_GET_BY_USER, produces = ApplicationConstants.APPLICATION_JSON)
+//    public @ResponseBody
+//    ResponseEntity<RestApiResponse>
+//    getShortUrlByUser(@PathVariable String userId) {
+//        UserEntity userEntity = getAuthenticatedUser();
+//        if (userEntity == null)
+//            return ResponseEntityBuilder.getBuilder(HttpStatus.UNAUTHORIZED).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
+//
+//        log.info("Received a request to fetch Short Url Data by UserId : {}", userId);
+//        List<UrlShortenerResponse> response = urlShortenerService.getShortUrlByUserId(userId);
+//        if (response == null)
+//            return ResponseEntityBuilder.getBuilder(HttpStatus.NOT_FOUND).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "No data found for the user");
+//        return ResponseEntityBuilder.getBuilder(HttpStatus.OK).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, response);
+//    }
 
     @GetMapping(value = UrlConstants.URL_GET_ALL_KEYS, produces = ApplicationConstants.APPLICATION_JSON)
     public @ResponseBody
@@ -66,10 +74,10 @@ public class UrlShortenerController {
     getAllShortUrls() {
         UserEntity userEntity = getAuthenticatedUser();
         if (userEntity == null)
-            return ResponseEntityBuilder.getBuilder(HttpStatus.UNAUTHORIZED).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
+            return ResponseEntityBuilder.getBuilder(HttpStatus.FORBIDDEN).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
 
         log.info("Received a request to fetch all the Short Url Data ");
-        List<UrlShortenerResponse> response = urlShortenerService.getAllKeys();
+        List<UrlShortenerResponse> response = urlShortenerService.getShortUrlByUserId(userEntity.getUserId());
         if (response == null)
             return ResponseEntityBuilder.getBuilder(HttpStatus.INTERNAL_SERVER_ERROR).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unable to process the request");
         return ResponseEntityBuilder.getBuilder(HttpStatus.OK).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, response);
@@ -80,11 +88,16 @@ public class UrlShortenerController {
     ResponseEntity<RestApiResponse> generateShortUrl(@Valid @RequestBody UrlShortenerRequest urlShortenerRequest) {
         UserEntity userEntity = getAuthenticatedUser();
         if (userEntity == null)
-            return ResponseEntityBuilder.getBuilder(HttpStatus.UNAUTHORIZED).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
+            return ResponseEntityBuilder.getBuilder(HttpStatus.FORBIDDEN).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
         urlShortenerRequest.setUserId(userEntity.getUserId());
         log.info("Received a request to register a new Short Urls- {} , {}", urlShortenerRequest, userEntity);
-        if (!validator.isValidUrl(urlShortenerRequest.getUrl()))
+        try{
+            if (!validator.isValidUrl(urlShortenerRequest.getUrl()))
+                return ResponseEntityBuilder.getBuilder(HttpStatus.BAD_REQUEST).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Invalid URL format");
+        }catch(Exception e1){
             return ResponseEntityBuilder.getBuilder(HttpStatus.BAD_REQUEST).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Invalid URL format");
+        }
+
         UrlShortenerResponse response = urlShortenerService.generateShortUrl(urlShortenerRequest);
         if (response == null)
             return ResponseEntityBuilder.getBuilder(HttpStatus.BAD_REQUEST).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unable to create the short url");
@@ -96,12 +109,24 @@ public class UrlShortenerController {
     ResponseEntity<RestApiResponse> generateShortUrl(@Valid @RequestBody UrlShortenerRequest urlShortenerRequest, @PathVariable String refId) {
         UserEntity userEntity = getAuthenticatedUser();
         if (userEntity == null)
-            return ResponseEntityBuilder.getBuilder(HttpStatus.UNAUTHORIZED).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
+            return ResponseEntityBuilder.getBuilder(HttpStatus.FORBIDDEN).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
 
         log.info("Received a request to update Url Shortener request - {}, {}", urlShortenerRequest, refId);
-        UrlShortenerResponse isObjectExist = urlShortenerService.getShortUrlByRefId(refId);
-        if (!validator.isValidUrl(urlShortenerRequest.getUrl()))
+        UrlShortenerResponse isObjectExist = null;
+        try{
+            isObjectExist=urlShortenerService.getShortUrlByUserIdAndRefId(userEntity.getUserId(),refId);
+        }catch(UrlShortenerException ex){
+            log.error("{}",ex);
+            return ResponseEntityBuilder.getBuilder(HttpStatus.NOT_FOUND).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Invalid ID");
+        }
+        try{
+            if (!validator.isValidUrl(urlShortenerRequest.getUrl()))
+                return ResponseEntityBuilder.getBuilder(HttpStatus.BAD_REQUEST).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Invalid URL format");
+        }catch(Exception e1){
             return ResponseEntityBuilder.getBuilder(HttpStatus.BAD_REQUEST).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Invalid URL format");
+        }
+//        if (!validator.isValidUrl(urlShortenerRequest.getUrl()))
+//            return ResponseEntityBuilder.getBuilder(HttpStatus.BAD_REQUEST).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Invalid URL format");
         if (isObjectExist == null)
             return ResponseEntityBuilder.getBuilder(HttpStatus.NOT_FOUND).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Object doesn't exist in the DB. Invalid ID");
         UrlShortenerResponse response = urlShortenerService.updateUrl(refId, urlShortenerRequest);
@@ -120,13 +145,19 @@ public class UrlShortenerController {
     deleteShortUrlById(@PathVariable String refId) {
         UserEntity userEntity = getAuthenticatedUser();
         if (userEntity == null)
-            return ResponseEntityBuilder.getBuilder(HttpStatus.UNAUTHORIZED).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
+            return ResponseEntityBuilder.getBuilder(HttpStatus.FORBIDDEN).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
 
         log.info("Received a request to delete Short Url Data : {}", refId);
-        boolean isDeleted = urlShortenerService.deleteByRefId(refId);
+        boolean isDeleted = false;
+        try{
+            isDeleted = urlShortenerService.deleteByUserIdAndRefId(userEntity.getUserId(),refId);
+        }catch (UrlShortenerException e1){
+            return ResponseEntityBuilder.getBuilder(HttpStatus.NOT_FOUND).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
+
+        }
         if (!isDeleted)
             return ResponseEntityBuilder
-                    .getBuilder(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .getBuilder(HttpStatus.NOT_FOUND)
                     .errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unable to process your request");
         return ResponseEntityBuilder.getBuilder(HttpStatus.NO_CONTENT).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, isDeleted);
     }
@@ -137,11 +168,11 @@ public class UrlShortenerController {
     deleteAllShortUrls() {
         UserEntity userEntity = getAuthenticatedUser();
         if (userEntity == null)
-            return ResponseEntityBuilder.getBuilder(HttpStatus.UNAUTHORIZED).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
-        
+            return ResponseEntityBuilder.getBuilder(HttpStatus.FORBIDDEN).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unauthorized access");
+
         log.info("Received a request to delete all Short Urls");
         return ResponseEntityBuilder
-                .getBuilder(HttpStatus.FORBIDDEN)
+                .getBuilder(HttpStatus.NOT_FOUND)
                 .errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "The operation is forbidden");
     }
 
