@@ -9,9 +9,10 @@ public class ApplicationConstants {
     public static final String REQUEST_FAILURE_DESCRIPTION = "FAILED";
     public static final String DOMAIN_NAME = "https://group12.com/";
     public static final int KEY_LENGTH = 6;
-
+    public static final String SEP = "/";
+    public static final Character PARAM_START = '{';
+    public static final Character PARAM_END = '}';
     public enum AppStatus {
         ACTIVE, INACTIVE
     }
-
 }

@@ -1,6 +1,5 @@
 package com.wscbs.group12.urlshortner.utility.discoveryservice.services.impl;
 
-import com.wscbs.group12.urlshortner.utility.discoveryservice.model.loadbalancer.InstanceModel;
 import com.wscbs.group12.urlshortner.utility.discoveryservice.repository.DiscoveryRepository;
 import com.wscbs.group12.urlshortner.utility.discoveryservice.services.LoadBalancerService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +22,7 @@ public class LoadBalancerServiceImpl implements LoadBalancerService {
         ConsistentHashingLoadBalancer loadBalancer = instanceModelMap.get(serviceName);
         if (loadBalancer == null) {
             loadBalancer = new ConsistentHashingLoadBalancer();
-            loadBalancer.init(serviceName,discoveryRepository);
+            loadBalancer.init(serviceName, discoveryRepository);
         }
         return loadBalancer;
     }

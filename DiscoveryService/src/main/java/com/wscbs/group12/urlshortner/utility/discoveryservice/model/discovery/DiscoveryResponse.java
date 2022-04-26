@@ -2,7 +2,7 @@ package com.wscbs.group12.urlshortner.utility.discoveryservice.model.discovery;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.util.Set;
 
 @ToString
 @Data
@@ -18,4 +18,8 @@ public class DiscoveryResponse {
     private String status;
 
     private String message;
+
+    private int port;
+
+    private Set<String> endpoints;
 }

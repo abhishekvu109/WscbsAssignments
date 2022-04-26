@@ -146,6 +146,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>UrlShortner-final</finalName>
+        <finalName>urlshortener-service-final</finalName>
     </build>
 </project>

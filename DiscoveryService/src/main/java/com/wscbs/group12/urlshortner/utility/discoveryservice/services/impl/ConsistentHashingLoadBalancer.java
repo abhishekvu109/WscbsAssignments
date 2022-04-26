@@ -4,19 +4,14 @@ package com.wscbs.group12.urlshortner.utility.discoveryservice.services.impl;
 import com.wscbs.group12.urlshortner.utility.discoveryservice.entities.Discovery;
 import com.wscbs.group12.urlshortner.utility.discoveryservice.model.loadbalancer.InstanceModel;
 import com.wscbs.group12.urlshortner.utility.discoveryservice.repository.DiscoveryRepository;
-import com.wscbs.group12.urlshortner.utility.discoveryservice.services.DiscoveryService;
 import com.wscbs.group12.urlshortner.utility.discoveryservice.util.CommonUtil;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigInteger;
 import java.util.*;
 
 /*
