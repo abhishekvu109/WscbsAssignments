@@ -1,10 +1,12 @@
-------------------------------------------------------------------
-# To run the docker images, for first part of the assignment     |
-------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+# To run the docker images, for first part of the assignment     						|
+# Please switch to the Package directory in the branch of 'assignment-3' of the GitHub project.    		|
+------------------------------------------------------------------------------------------------------------
 
 ### !. Create the network and put all the services into a strongly connected topology (To reduce latency)
 - sudo docker network create -d bridge group-12-network
-- Please always switch to the Package directory in the branch of 'assignment-3' of the GitHub project.
+- Retrieve the gateway IP of this network using "docker network inspect group-12-network", as that IP-address will be used to forward the requests to other microservices.
+
 
 
 ### 0. We will retrieve an automatic image of mysql from docker repository.
@@ -52,4 +54,6 @@ docker build -t nginx-reverse-proxy-image .
 #### 4.2. The second step is to run the image
 sudo docker run --name nginx-reverse-proxy1 -d -p 6060:6060 --network group-12-network nginx-reverse-proxy-image
 cd ..
-
+-> For the testing of nginx reverse proxy, please make requests as listed below (after making the below hostnames entry in hosts file):
+            http://url-shortener.service:6060/test (for quering url-shortener service with short-ID=test)
+            http://user-auth.service:6060/test (for quering user-auth service with user-ID=test, and so on...)
