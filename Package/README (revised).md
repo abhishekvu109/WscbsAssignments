@@ -56,4 +56,4 @@ sudo docker run --name nginx-reverse-proxy1 -d -p 6060:6060 --network group-12-n
 cd ..
 -> For the testing of nginx reverse proxy, please make requests as listed below (after making the below hostnames entry in hosts file):
             http://url-shortener.service:6060/test (for quering url-shortener service with short-ID=test)
-            http://user-auth.service:6060/test (for quering user-auth service with user-ID=test, and so on...)
+            http://user-auth.service:6060/user/test (for quering user-auth service with user-ID=test, and so on...)
