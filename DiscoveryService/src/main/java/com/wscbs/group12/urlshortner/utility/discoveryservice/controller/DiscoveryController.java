@@ -38,7 +38,7 @@ public class DiscoveryController {
         }
     }
 
-    @GetMapping(value = UrlConstants.DISCOVERY, consumes = ApplicationConstants.APPLICATION_JSON)
+    @GetMapping(value = UrlConstants.DISCOVERY, produces = ApplicationConstants.APPLICATION_JSON)
     public @ResponseBody
     ResponseEntity<RestApiResponse> getAllServices() {
         log.info("Received a request to get all the discovered services");

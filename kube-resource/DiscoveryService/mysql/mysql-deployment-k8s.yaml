@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment-k8s
+spec:
+  selector:
+    matchLabels:
+      app: mysql-deployment-k8s
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql-deployment-k8s
+    spec:
+      containers:
+        - image: mysql:latest
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret-root
+                  key: password
+            - name: MYSQL_DATABASE
+              value: urlshortener
+            - name: MYSQL_USER
+              value: group12
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret-user
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim

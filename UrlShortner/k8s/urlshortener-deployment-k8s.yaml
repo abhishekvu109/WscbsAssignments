@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urlshortener-deployment-k8s
+spec:
+  selector:
+    matchLabels:
+      app: urlshortener-deployment-k8s
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: urlshortener-deployment-k8s
+    spec:
+      containers:
+        - name: urlshortener-deployment-k8s
+          image: abhishekvu109/urlshortener-service-image:latest
+          envFrom:
+            - configMapRef:
+                name: urlshortener-config
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

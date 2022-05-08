@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: urlshortener-config-k8s
+  labels:
+    app: urlshortener-deployment-k8s
+data:
+  SERVICE_PORT: "8080"
+  MYSQL_HOST: 145.100.134.100
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: urlshortener
+  SERVICE_NAME: 10.111.108.248
+  DISCOVERY_SERVICE: 10.101.93.204
+  DISCOVERY_SERVICE_PORT: "5050"

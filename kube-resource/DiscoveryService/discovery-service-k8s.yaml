@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-service-k8s
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 5050        # The port inside the cluster
+      targetPort: 5050  # The port exposed by the service
+      nodePort: 30050
+  type: NodePort
+  selector:
+    app: discovery-deployment-k8s

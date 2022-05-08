@@ -1,0 +1,1 @@
+docker run --name urlshortener-service-app2 -d -p 8181:8181 -e SERVICE_PORT=8181 -e SERVICE_NAME=urlshortener-service-app2 -e DISCOVERY_SERVICE=discovery-service-app1 -e DISCOVERY_SERVICE_PORT=5050 -e MYSQL_HOST=mysqldatabase -e MYSQL_PORT=3306 -e MYSQL_DATABASE=urlshortener -e MYSQL_USER=group12 -e MYSQL_PASSWORD=group12 --network mynetwork urlshortener-service-image

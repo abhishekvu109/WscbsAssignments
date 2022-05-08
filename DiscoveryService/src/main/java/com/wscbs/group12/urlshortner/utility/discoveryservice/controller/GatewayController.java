@@ -58,8 +58,10 @@ public class GatewayController {
 //            return ResponseEntityBuilder.getBuilder(res.getStatusCode()).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, res.getBody());
             return res;
         } catch (final HttpClientErrorException e) {
+            log.error("Unable to process your request {}",e);
             return ResponseEntityBuilder.getBuilder(e.getStatusCode()).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, e.getResponseBodyAsString());
         } catch (Exception ex) {
+            log.error("Unable to process your request {}",ex);
             return ResponseEntityBuilder.getBuilder(HttpStatus.INTERNAL_SERVER_ERROR).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unable to process your request");
         }
 
@@ -88,8 +90,10 @@ public class GatewayController {
             return res;
 //            return ResponseEntityBuilder.getBuilder(res.getStatusCode()).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, res.getBody());
         } catch (final HttpClientErrorException e) {
+            log.error("Unable to process your request {}",e);
             return ResponseEntityBuilder.getBuilder(e.getStatusCode()).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, e.getResponseBodyAsString());
         } catch (Exception ex) {
+            log.error("Unable to process your request {}",ex);
             return ResponseEntityBuilder.getBuilder(HttpStatus.INTERNAL_SERVER_ERROR).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unable to process your request");
         }
 
@@ -117,8 +121,10 @@ public class GatewayController {
 //            return ResponseEntityBuilder.getBuilder(res.getStatusCode()).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, res.getBody());
             return res;
         } catch (final HttpClientErrorException e) {
+            log.error("Unable to process your request {}",e);
             return ResponseEntityBuilder.getBuilder(e.getStatusCode()).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, e.getResponseBodyAsString());
         } catch (Exception ex) {
+            log.error("Unable to process your request {}",ex);
             return ResponseEntityBuilder.getBuilder(HttpStatus.INTERNAL_SERVER_ERROR).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unable to process your request");
         }
 
@@ -146,8 +152,10 @@ public class GatewayController {
 //            return ResponseEntityBuilder.getBuilder(res.getStatusCode()).successResponse(ApplicationConstants.REQUEST_SUCCESS_DESCRIPTION, res.getBody());
             return res;
         } catch (final HttpClientErrorException e) {
+            log.error("Unable to process your request {}",e);
             return ResponseEntityBuilder.getBuilder(e.getStatusCode()).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, e.getResponseBodyAsString());
         } catch (Exception ex) {
+            log.error("Unable to process your request {}",ex);
             return ResponseEntityBuilder.getBuilder(HttpStatus.INTERNAL_SERVER_ERROR).errorResponse(ApplicationConstants.REQUEST_FAILURE_DESCRIPTION, "Unable to process your request");
         }
 

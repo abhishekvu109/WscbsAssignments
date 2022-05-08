@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment-k8s
+spec:
+  selector:
+    matchLabels:
+      app: auth-deployment-k8s
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: auth-deployment-k8s
+    spec:
+      containers:
+        - name: auth-deployment-k8s
+          image: 'abhishekvu109/auth-service-image:latest'
+          env:
+            - name: SERVICE_PORT
+              value: "7070"
+            - name: MYSQL_HOST
+              value: 145.100.134.85
+            - name: MYSQL_PORT
+              value: "32185"
+            - name: MYSQL_USER
+              value: group12
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret-user
+                  key: password
+            - name: SERVICE_NAME
+              value: 10.107.170.32
+            - name: DISCOVERY_SERVICE
+              value: 145.100.134.85
+            - name: DISCOVERY_SERVICE_PORT
+              value: "30050"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 7070

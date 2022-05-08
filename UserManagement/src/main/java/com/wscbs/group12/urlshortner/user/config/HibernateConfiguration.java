@@ -1,6 +1,7 @@
 package com.wscbs.group12.urlshortner.user.config;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@Slf4j
 public class HibernateConfiguration {
     @Value("${db.driver}")
     private String DRIVER;
@@ -70,6 +72,7 @@ public class HibernateConfiguration {
 
     @Bean(name = "entityManagerFactory")
     public EntityManagerFactory entityManagerFactory() {
+        log.info("Database object- {}",URL);
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         emf.setDataSource(dataSource());

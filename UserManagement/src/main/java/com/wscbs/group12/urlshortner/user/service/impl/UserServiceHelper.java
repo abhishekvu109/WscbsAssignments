@@ -3,8 +3,6 @@ package com.wscbs.group12.urlshortner.user.service.impl;
 import com.wscbs.group12.urlshortner.user.entities.UserEntity;
 import com.wscbs.group12.urlshortner.user.model.UserRequest;
 import com.wscbs.group12.urlshortner.user.model.UserResponse;
-import com.wscbs.group12.urlshortner.user.repository.UserRepository;
-import com.wscbs.group12.urlshortner.user.util.CommonUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +18,6 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserServiceHelper {
 
-    private final CommonUtil commonUtil;
-    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     public UserEntity buildUserEntityFromRequest(UserRequest request) {

@@ -51,13 +51,15 @@ public class ConsistentHashingLoadBalancer {
 
     private void buildHashRing() {
         this.nodeHashRing = new TreeMap<>();
-        for (Discovery discovery : this.discoveryList) {
-            Long location = getNodeLocation(discovery);
-            List<Discovery> discoveries = this.nodeHashRing.get(location);
-            if (CollectionUtils.isEmpty(discoveries))
-                discoveries = new LinkedList<>();
-            discoveries.add(discovery);
-            this.nodeHashRing.put(location, discoveries);
+        if (CollectionUtils.isNotEmpty(this.discoveryList)) {
+            discoveryList.stream().forEach(discovery -> {
+                Long location = getNodeLocation(discovery);
+                List<Discovery> discoveries = this.nodeHashRing.get(location);
+                if (CollectionUtils.isEmpty(discoveries))
+                    discoveries = new LinkedList<>();
+                discoveries.add(discovery);
+                this.nodeHashRing.put(location, discoveries);
+            });
         }
     }
 

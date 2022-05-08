@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-deployment-k8s
+spec:
+  selector:
+    matchLabels:
+      app: discovery-deployment-k8s
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: discovery-deployment-k8s
+    spec:
+      containers:
+        - name: discovery-deployment-k8s
+          image: abhishekvu109/discovery-service-image:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5050
+      imagePullSecrets:
+        - name: myregistrykey
