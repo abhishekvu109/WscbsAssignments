@@ -142,15 +142,15 @@ def custom_json_parsing(vaccine):
 def get_negative_neutral_positive_wordcloud(vaccine):
     value = ''
     base64_encoded_value = ''
-    match vaccine.lower():
-        case 'covaxin' | 'moderna' | 'sputnik' | 'sinopharm' | 'sinovac':
-            value = vaccine.lower()
-        case 'pfizer' | 'biontech':
-            value = 'pfizer'
-        case 'oxford' | 'astrazeneca':
-            value = 'astrazeneca'
-        case _:
-            value = ''
+    if vaccine.lower() == 'covaxin' | vaccine.lower() == 'moderna' | vaccine.lower() == 'sputnik' | vaccine.lower() == 'sinopharm':
+        value = vaccine.lower()
+
+    elif vaccine.lower() == 'pfizer' | vaccine.lower() == 'biontech':
+        value = 'pfizer'
+    elif vaccine.lower() == 'oxford' | vaccine.lower() == 'astrazeneca':
+        value = 'astrazeneca'
+    else:
+        value = ''
     file = Path("./images/" + value + "_sentiment_wordclouds_revised_dataset.png")
     if file.is_file():
         with open(file, "rb") as image_file:
