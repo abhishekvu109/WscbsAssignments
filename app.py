@@ -32,15 +32,15 @@ def hello_world():  # put application's code here
 def time_series_analysis(vaccine):
     value = ''
     base64_encoded_value = ''
-    match vaccine.lower():
-        case 'covaxin' | 'moderna' | 'sputnik' | 'sinopharm' | 'sinovac':
-            value = vaccine.lower()
-        case 'pfizer' | 'biontech':
-            value = 'pfizer'
-        case 'oxford' | 'astrazeneca':
-            value = 'astrazeneca'
-        case _:
-            value = ''
+    if vaccine.lower() == 'covaxin' | vaccine.lower() == 'moderna' | vaccine.lower() == 'sputnik' | vaccine.lower() == 'sinopharm':
+        value = vaccine.lower()
+
+    elif vaccine.lower() == 'pfizer' | vaccine.lower() == 'biontech':
+        value = 'pfizer'
+    elif vaccine.lower() == 'oxford' | vaccine.lower() == 'astrazeneca':
+        value = 'astrazeneca'
+    else:
+        value = ''
     file = Path("./images/" + value + "_timeseries_analysis_revised_dataset.png")
     if file.is_file():
         with open(file, "rb") as image_file:
@@ -60,15 +60,15 @@ def time_series_analysis(vaccine):
 @app.route("/tweets/<string:vaccine>", methods=['GET'])
 def get_negative_neutral_positive_tweets(vaccine):
     value = ''
-    match vaccine.lower():
-        case 'covaxin' | 'moderna' | 'sputnik' | 'sinopharm' | 'sinovac':
-            value = vaccine.lower()
-        case 'pfizer' | 'biontech':
-            value = 'pfizer'
-        case 'oxford' | 'astrazeneca':
-            value = 'astrazeneca'
-        case _:
-            value = ''
+    if vaccine.lower() == 'covaxin' | vaccine.lower() == 'moderna' | vaccine.lower() == 'sputnik' | vaccine.lower() == 'sinopharm':
+        value = vaccine.lower()
+
+    elif vaccine.lower() == 'pfizer' | vaccine.lower() == 'biontech':
+        value = 'pfizer'
+    elif vaccine.lower() == 'oxford' | vaccine.lower() == 'astrazeneca':
+        value = 'astrazeneca'
+    else:
+        value = ''
     if value:
         response = make_response(custom_json_parsing(vaccine), 200, )
         app.logger.info("Positive and negative tweets available for vaccine  " + vaccine.lower() + "!")
