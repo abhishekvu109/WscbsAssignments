@@ -45,12 +45,12 @@ def hello_world():  # put application's code here
 def time_series_analysis(vaccine):
     value = ''
     base64_encoded_value = ''
-    if vaccine.lower() == 'covaxin' | vaccine.lower() == 'moderna' | vaccine.lower() == 'sputnik' | vaccine.lower() == 'sinopharm':
+    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm':
         value = vaccine.lower()
 
-    elif vaccine.lower() == 'pfizer' | vaccine.lower() == 'biontech':
+    elif vaccine.lower() == 'pfizer' or vaccine.lower() == 'biontech':
         value = 'pfizer'
-    elif vaccine.lower() == 'oxford' | vaccine.lower() == 'astrazeneca':
+    elif vaccine.lower() == 'oxford' or vaccine.lower() == 'astrazeneca':
         value = 'astrazeneca'
     else:
         value = ''
@@ -75,12 +75,12 @@ def time_series_analysis(vaccine):
 @cross_origin()
 def get_negative_neutral_positive_tweets(vaccine):
     value = ''
-    if vaccine.lower() == 'covaxin' | vaccine.lower() == 'moderna' | vaccine.lower() == 'sputnik' | vaccine.lower() == 'sinopharm':
+    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm':
         value = vaccine.lower()
 
-    elif vaccine.lower() == 'pfizer' | vaccine.lower() == 'biontech':
+    elif vaccine.lower() == 'pfizer' or vaccine.lower() == 'biontech':
         value = 'pfizer'
-    elif vaccine.lower() == 'oxford' | vaccine.lower() == 'astrazeneca':
+    elif vaccine.lower() == 'oxford' or vaccine.lower() == 'astrazeneca':
         value = 'astrazeneca'
     else:
         value = ''
@@ -160,12 +160,12 @@ def custom_json_parsing(vaccine):
 def get_negative_neutral_positive_wordcloud(vaccine):
     value = ''
     base64_encoded_value = ''
-    if vaccine.lower() == 'covaxin' | vaccine.lower() == 'moderna' | vaccine.lower() == 'sputnik' | vaccine.lower() == 'sinopharm':
+    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm':
         value = vaccine.lower()
 
-    elif vaccine.lower() == 'pfizer' | vaccine.lower() == 'biontech':
+    elif vaccine.lower() == 'pfizer' or vaccine.lower() == 'biontech':
         value = 'pfizer'
-    elif vaccine.lower() == 'oxford' | vaccine.lower() == 'astrazeneca':
+    elif vaccine.lower() == 'oxford' or vaccine.lower() == 'astrazeneca':
         value = 'astrazeneca'
     else:
         value = ''
