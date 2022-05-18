@@ -1,4 +1,17 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import './index.css'
+import router from './router' 
 
-createApp(App).mount('#app')
+import { createStore } from 'vuex'
+import { vaccine } from './store/vaccine.js'
+
+const store = createStore({
+	modules: {
+        vaccine
+	}
+});
+
+const app = createApp(App)
+
+app.use(store).use(router).mount('#app')
