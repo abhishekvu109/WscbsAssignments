@@ -45,7 +45,7 @@ def hello_world():  # put application's code here
 def time_series_analysis(vaccine):
     value = ''
     base64_encoded_value = ''
-    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm':
+    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm' or vaccine.lower() == 'sinovac':
         value = vaccine.lower()
 
     elif vaccine.lower() == 'pfizer' or vaccine.lower() == 'biontech':
@@ -54,7 +54,7 @@ def time_series_analysis(vaccine):
         value = 'astrazeneca'
     else:
         value = ''
-    file = Path("./images/" + value + "_timeseries_analysis_revised_dataset.png")
+    file = Path("./images/" + value + "_timeseries_polarity_optimised_dataset.png")
     if file.is_file():
         with open(file, "rb") as image_file:
             encoded_string = base64.b64encode(image_file.read())
@@ -75,7 +75,7 @@ def time_series_analysis(vaccine):
 @cross_origin()
 def get_negative_neutral_positive_tweets(vaccine):
     value = ''
-    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm':
+    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm'  or vaccine.lower() == 'sinovac':
         value = vaccine.lower()
 
     elif vaccine.lower() == 'pfizer' or vaccine.lower() == 'biontech':
@@ -87,7 +87,7 @@ def get_negative_neutral_positive_tweets(vaccine):
     if value:
         # response = make_response(custom_json_parsing(vaccine), 200, )
         app.logger.info("Positive and negative tweets available for vaccine  " + vaccine.lower() + "!")
-        return return_response(custom_json_parsing(vaccine), 200)
+        return return_response(custom_json_parsing(value), 200)
     else:
         # response = make_response(jsonify(
         #     {"value": ""}), 404, )  # for null-case when there is no wordcloud file for that vaccine
@@ -160,7 +160,7 @@ def custom_json_parsing(vaccine):
 def get_negative_neutral_positive_wordcloud(vaccine):
     value = ''
     base64_encoded_value = ''
-    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm':
+    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm'  or vaccine.lower() == 'sinovac':
         value = vaccine.lower()
 
     elif vaccine.lower() == 'pfizer' or vaccine.lower() == 'biontech':
@@ -169,7 +169,7 @@ def get_negative_neutral_positive_wordcloud(vaccine):
         value = 'astrazeneca'
     else:
         value = ''
-    file = Path("./images/" + value + "_sentiment_wordclouds_revised_dataset.png")
+    file = Path("./images/" + value + "_sentiment_wordclouds_optimised_dataset.png")
     if file.is_file():
         with open(file, "rb") as image_file:
             encoded_string = base64.b64encode(image_file.read())
