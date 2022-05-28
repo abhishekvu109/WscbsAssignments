@@ -69,3 +69,335 @@ TypeError: unsupported operand type(s) for |: 'str' and 'str'
 2022-05-18 00:15:47,692 INFO werkzeug:  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
 2022-05-18 00:15:48,501 INFO app: Wordcloud image not available for vaccine ppp! Need to compute for image generation...
 2022-05-18 00:15:48,503 INFO werkzeug: 127.0.0.1 - - [18/May/2022 00:15:48] "[33mGET /wordcloud/ppp HTTP/1.1[0m" 404 -
+2022-05-18 22:57:53,697 INFO werkzeug:  * Running on http://127.0.0.1:5050/ (Press CTRL+C to quit)
+2022-05-18 22:58:43,408 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:58:43] "[33mGET /wordcloud/ HTTP/1.1[0m" 404 -
+2022-05-18 22:58:46,659 INFO app: Wordcloud image successfully encoded for vaccine biontech!
+2022-05-18 22:58:46,663 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:58:46] "GET /wordcloud/BioNTech HTTP/1.1" 200 -
+2022-05-18 22:58:48,272 INFO app: Wordcloud image successfully encoded for vaccine pfizer!
+2022-05-18 22:58:48,275 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:58:48] "GET /wordcloud/Pfizer HTTP/1.1" 200 -
+2022-05-18 22:58:49,917 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 22:58:49,918 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:58:49] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 22:58:54,379 INFO app: Positive and negative tweets available for vaccine  pfizer!
+2022-05-18 22:58:54,380 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:58:54] "GET /tweets/Pfizer HTTP/1.1" 200 -
+2022-05-18 22:58:58,529 INFO app: Positive and negative tweets available for vaccine  biontech!
+2022-05-18 22:58:58,530 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:58:58] "GET /tweets/BioNTech HTTP/1.1" 200 -
+2022-05-18 22:58:59,866 INFO app: Timeseries analysis image successfully encoded for vaccine biontech!
+2022-05-18 22:58:59,867 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:58:59] "[35m[1mGET /timeseries/BioNTech HTTP/1.1[0m" 203 -
+2022-05-18 22:59:00,468 INFO app: Wordcloud image successfully encoded for vaccine biontech!
+2022-05-18 22:59:00,471 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:59:00] "GET /wordcloud/BioNTech HTTP/1.1" 200 -
+2022-05-18 22:59:02,377 INFO app: Wordcloud image not available for vaccine johnson&johnson! Need to compute for image generation...
+2022-05-18 22:59:02,378 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:59:02] "[33mGET /wordcloud/Johnson&Johnson HTTP/1.1[0m" 404 -
+2022-05-18 22:59:04,793 INFO app: Wordcloud image successfully encoded for vaccine moderna!
+2022-05-18 22:59:04,797 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:59:04] "GET /wordcloud/Moderna HTTP/1.1" 200 -
+2022-05-18 22:59:07,774 INFO app: Wordcloud image not available for vaccine novavax! Need to compute for image generation...
+2022-05-18 22:59:07,775 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:59:07] "[33mGET /wordcloud/NovaVax HTTP/1.1[0m" 404 -
+2022-05-18 22:59:18,677 INFO app: Wordcloud image successfully encoded for vaccine astrazeneca!
+2022-05-18 22:59:18,680 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:59:18] "GET /wordcloud/AstraZeneca HTTP/1.1" 200 -
+2022-05-18 22:59:20,428 INFO app: Wordcloud image not available for vaccine sputnik v! Need to compute for image generation...
+2022-05-18 22:59:20,429 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:59:20] "[33mGET /wordcloud/Sputnik%20V HTTP/1.1[0m" 404 -
+2022-05-18 22:59:23,910 INFO app: Wordcloud image successfully encoded for vaccine sinovac!
+2022-05-18 22:59:23,913 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:59:23] "GET /wordcloud/Sinovac HTTP/1.1" 200 -
+2022-05-18 22:59:27,595 INFO app: Wordcloud image successfully encoded for vaccine sinopharm!
+2022-05-18 22:59:27,597 INFO werkzeug: 127.0.0.1 - - [18/May/2022 22:59:27] "GET /wordcloud/Sinopharm HTTP/1.1" 200 -
+2022-05-18 23:00:06,722 INFO app: Wordcloud image successfully encoded for vaccine sinopharm!
+2022-05-18 23:00:06,725 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:06] "GET /wordcloud/Sinopharm HTTP/1.1" 200 -
+2022-05-18 23:00:06,733 INFO app: Wordcloud image successfully encoded for vaccine sinopharm!
+2022-05-18 23:00:06,735 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:06] "GET /wordcloud/Sinopharm HTTP/1.1" 200 -
+2022-05-18 23:00:08,892 INFO app: Wordcloud image successfully encoded for vaccine sinopharm!
+2022-05-18 23:00:08,894 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:08] "GET /wordcloud/Sinopharm HTTP/1.1" 200 -
+2022-05-18 23:00:12,763 INFO app: Wordcloud image successfully encoded for vaccine pfizer!
+2022-05-18 23:00:12,767 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:12] "GET /wordcloud/Pfizer HTTP/1.1" 200 -
+2022-05-18 23:00:14,180 INFO app: Wordcloud image successfully encoded for vaccine biontech!
+2022-05-18 23:00:14,183 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:14] "GET /wordcloud/BioNTech HTTP/1.1" 200 -
+2022-05-18 23:00:16,064 INFO app: Wordcloud image successfully encoded for vaccine moderna!
+2022-05-18 23:00:16,067 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:16] "GET /wordcloud/Moderna HTTP/1.1" 200 -
+2022-05-18 23:00:17,759 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:00:17,763 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:17] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:00:29,725 INFO app: Wordcloud image successfully encoded for vaccine sinovac!
+2022-05-18 23:00:29,728 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:29] "GET /wordcloud/Sinovac HTTP/1.1" 200 -
+2022-05-18 23:00:31,379 INFO app: Wordcloud image successfully encoded for vaccine sinopharm!
+2022-05-18 23:00:31,381 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:31] "GET /wordcloud/Sinopharm HTTP/1.1" 200 -
+2022-05-18 23:00:32,482 INFO app: Timeseries analysis image successfully encoded for vaccine sinopharm!
+2022-05-18 23:00:32,483 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:32] "[35m[1mGET /timeseries/Sinopharm HTTP/1.1[0m" 203 -
+2022-05-18 23:00:35,111 INFO app: Timeseries analysis image successfully encoded for vaccine sinovac!
+2022-05-18 23:00:35,111 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:35] "[35m[1mGET /timeseries/Sinovac HTTP/1.1[0m" 203 -
+2022-05-18 23:00:36,893 INFO app: Timeseries analysis image successfully encoded for vaccine sputnik!
+2022-05-18 23:00:36,894 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:36] "[35m[1mGET /timeseries/Sputnik HTTP/1.1[0m" 203 -
+2022-05-18 23:00:38,128 INFO app: Timeseries analysis image successfully encoded for vaccine moderna!
+2022-05-18 23:00:38,130 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:38] "[35m[1mGET /timeseries/Moderna HTTP/1.1[0m" 203 -
+2022-05-18 23:00:39,779 INFO app: Timeseries analysis image successfully encoded for vaccine astrazeneca!
+2022-05-18 23:00:39,781 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:39] "[35m[1mGET /timeseries/AstraZeneca HTTP/1.1[0m" 203 -
+2022-05-18 23:00:41,308 INFO app: Timeseries analysis image successfully encoded for vaccine biontech!
+2022-05-18 23:00:41,309 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:41] "[35m[1mGET /timeseries/BioNTech HTTP/1.1[0m" 203 -
+2022-05-18 23:00:42,709 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:00:42,710 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:42] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:00:45,203 INFO app: Positive and negative tweets available for vaccine  pfizer!
+2022-05-18 23:00:45,204 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:45] "GET /tweets/Pfizer HTTP/1.1" 200 -
+2022-05-18 23:00:46,845 INFO app: Positive and negative tweets available for vaccine  biontech!
+2022-05-18 23:00:46,845 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:46] "GET /tweets/BioNTech HTTP/1.1" 200 -
+2022-05-18 23:00:47,729 INFO app: Positive and negative tweets available for vaccine  moderna!
+2022-05-18 23:00:47,730 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:47] "GET /tweets/Moderna HTTP/1.1" 200 -
+2022-05-18 23:00:48,790 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:00:48,790 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:48] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:00:50,323 INFO app: Positive and negative tweets available for vaccine  astrazeneca!
+2022-05-18 23:00:50,324 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:50] "GET /tweets/AstraZeneca HTTP/1.1" 200 -
+2022-05-18 23:00:57,357 INFO app: Positive and negative tweets available for vaccine  moderna!
+2022-05-18 23:00:57,359 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:00:57] "GET /tweets/Moderna HTTP/1.1" 200 -
+2022-05-18 23:05:25,355 INFO werkzeug:  * Running on http://127.0.0.1:5050/ (Press CTRL+C to quit)
+2022-05-18 23:05:30,374 INFO app: Positive and negative tweets available for vaccine  moderna!
+2022-05-18 23:05:30,376 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:30] "GET /tweets/Moderna HTTP/1.1" 200 -
+2022-05-18 23:05:35,996 INFO app: Timeseries analysis image successfully encoded for vaccine moderna!
+2022-05-18 23:05:35,997 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:35] "[35m[1mGET /timeseries/Moderna HTTP/1.1[0m" 203 -
+2022-05-18 23:05:36,829 INFO app: Wordcloud image successfully encoded for vaccine moderna!
+2022-05-18 23:05:36,833 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:36] "GET /wordcloud/Moderna HTTP/1.1" 200 -
+2022-05-18 23:05:38,849 INFO app: Wordcloud image successfully encoded for vaccine pfizer!
+2022-05-18 23:05:38,853 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:38] "GET /wordcloud/Pfizer HTTP/1.1" 200 -
+2022-05-18 23:05:40,464 INFO app: Wordcloud image successfully encoded for vaccine moderna!
+2022-05-18 23:05:40,468 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:40] "GET /wordcloud/Moderna HTTP/1.1" 200 -
+2022-05-18 23:05:42,290 INFO app: Wordcloud image successfully encoded for vaccine astrazeneca!
+2022-05-18 23:05:42,293 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:42] "GET /wordcloud/AstraZeneca HTTP/1.1" 200 -
+2022-05-18 23:05:43,762 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:05:43,766 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:43] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:05:45,290 INFO app: Wordcloud image successfully encoded for vaccine sinovac!
+2022-05-18 23:05:45,294 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:45] "GET /wordcloud/Sinovac HTTP/1.1" 200 -
+2022-05-18 23:05:46,723 INFO app: Wordcloud image successfully encoded for vaccine sinopharm!
+2022-05-18 23:05:46,725 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:46] "GET /wordcloud/Sinopharm HTTP/1.1" 200 -
+2022-05-18 23:05:48,707 INFO app: Wordcloud image successfully encoded for vaccine biontech!
+2022-05-18 23:05:48,710 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:48] "GET /wordcloud/BioNTech HTTP/1.1" 200 -
+2022-05-18 23:05:49,582 INFO app: Timeseries analysis image successfully encoded for vaccine biontech!
+2022-05-18 23:05:49,583 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:49] "[35m[1mGET /timeseries/BioNTech HTTP/1.1[0m" 203 -
+2022-05-18 23:05:50,560 INFO app: Positive and negative tweets available for vaccine  biontech!
+2022-05-18 23:05:50,561 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:50] "GET /tweets/BioNTech HTTP/1.1" 200 -
+2022-05-18 23:05:52,625 INFO app: Positive and negative tweets available for vaccine  pfizer!
+2022-05-18 23:05:52,626 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:52] "GET /tweets/Pfizer HTTP/1.1" 200 -
+2022-05-18 23:05:54,142 INFO app: Positive and negative tweets available for vaccine  astrazeneca!
+2022-05-18 23:05:54,143 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:54] "GET /tweets/AstraZeneca HTTP/1.1" 200 -
+2022-05-18 23:05:56,069 INFO app: Positive and negative tweets available for vaccine  sinovac!
+2022-05-18 23:05:56,070 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:05:56] "GET /tweets/Sinovac HTTP/1.1" 200 -
+2022-05-18 23:06:01,089 INFO app: Positive and negative tweets available for vaccine  sinopharm!
+2022-05-18 23:06:01,091 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:01] "GET /tweets/Sinopharm HTTP/1.1" 200 -
+2022-05-18 23:06:10,456 INFO app: Positive and negative tweets available for vaccine  biontech!
+2022-05-18 23:06:10,457 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:10] "GET /tweets/BioNTech HTTP/1.1" 200 -
+2022-05-18 23:06:12,155 INFO app: Positive and negative tweets available for vaccine  pfizer!
+2022-05-18 23:06:12,157 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:12] "GET /tweets/Pfizer HTTP/1.1" 200 -
+2022-05-18 23:06:13,724 INFO app: Positive and negative tweets available for vaccine  astrazeneca!
+2022-05-18 23:06:13,725 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:13] "GET /tweets/AstraZeneca HTTP/1.1" 200 -
+2022-05-18 23:06:15,792 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:06:15,793 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:15] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:06:16,321 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:06:16,324 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:16] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:06:17,336 INFO app: Timeseries analysis image successfully encoded for vaccine sputnik!
+2022-05-18 23:06:17,337 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:17] "[35m[1mGET /timeseries/Sputnik HTTP/1.1[0m" 203 -
+2022-05-18 23:06:19,566 INFO app: Timeseries analysis image successfully encoded for vaccine sinovac!
+2022-05-18 23:06:19,567 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:19] "[35m[1mGET /timeseries/Sinovac HTTP/1.1[0m" 203 -
+2022-05-18 23:06:22,117 INFO app: Timeseries analysis image successfully encoded for vaccine sinopharm!
+2022-05-18 23:06:22,118 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:22] "[35m[1mGET /timeseries/Sinopharm HTTP/1.1[0m" 203 -
+2022-05-18 23:06:23,788 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:06:23,789 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:23] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:06:46,399 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:06:46,400 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:46] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:06:46,416 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:06:46,417 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:46] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:06:49,728 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:06:49,729 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:49] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:06:58,449 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:06:58,450 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:58] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:06:58,456 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:06:58,457 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:06:58] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:07:11,375 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:07:11,376 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:07:11] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:07:11,390 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:07:11,390 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:07:11] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:07:37,815 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:07:37,816 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:07:37] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:07:37,823 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:07:37,824 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:07:37] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:07:46,222 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:07:46,223 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:07:46] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:07:46,231 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:07:46,232 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:07:46] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:07:49,708 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:07:49,709 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:07:49] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:07:49,724 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:07:49,725 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:07:49] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:07:57,640 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:07:57,641 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:07:57] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:08:46,299 INFO app: Wordcloud image successfully encoded for vaccine pfizer!
+2022-05-18 23:08:46,302 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:08:46] "GET /wordcloud/Pfizer HTTP/1.1" 200 -
+2022-05-18 23:08:47,860 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:08:47,860 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:08:47] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:08:49,778 INFO app: Positive and negative tweets available for vaccine  pfizer!
+2022-05-18 23:08:49,781 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:08:49] "GET /tweets/Pfizer HTTP/1.1" 200 -
+2022-05-18 23:08:50,726 INFO app: Timeseries analysis image successfully encoded for vaccine pfizer!
+2022-05-18 23:08:50,727 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:08:50] "[35m[1mGET /timeseries/Pfizer HTTP/1.1[0m" 203 -
+2022-05-18 23:08:52,311 INFO app: Wordcloud image successfully encoded for vaccine pfizer!
+2022-05-18 23:08:52,331 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:08:52] "GET /wordcloud/Pfizer HTTP/1.1" 200 -
+2022-05-18 23:08:53,976 INFO app: Wordcloud image successfully encoded for vaccine moderna!
+2022-05-18 23:08:53,979 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:08:53] "GET /wordcloud/Moderna HTTP/1.1" 200 -
+2022-05-18 23:08:55,223 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:08:55,226 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:08:55] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:09:12,979 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:09:12,983 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:09:12] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:09:13,000 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:09:13,003 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:09:13] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:10:13,844 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:10:13,848 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:10:13] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:10:13,857 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:10:13,860 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:10:13] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:10:25,565 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:10:25,569 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:10:25] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:10:25,577 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:10:25,580 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:10:25] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:10:33,185 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:10:33,189 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:10:33] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:10:33,197 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:10:33,225 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:10:33] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:10:44,509 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:10:44,512 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:10:44] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:10:44,523 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:10:44,526 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:10:44] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:10:58,572 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:10:58,575 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:10:58] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:10:58,584 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:10:58,588 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:10:58] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:11:22,780 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:11:22,784 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:11:22] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:11:22,800 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:11:22,803 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:11:22] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:11:52,530 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:11:52,534 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:11:52] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:11:52,562 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:11:52,565 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:11:52] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:11:58,703 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:11:58,706 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:11:58] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:11:58,733 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:11:58,736 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:11:58] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:12:05,589 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:12:05,592 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:12:05] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:12:05,605 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:12:05,608 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:12:05] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:13:01,051 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:13:01,056 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:13:01] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:13:01,059 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:13:01,064 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:13:01] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:13:27,033 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:13:27,042 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:13:27] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:13:27,053 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:13:27,056 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:13:27] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:13:45,074 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:13:45,078 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:13:45] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:13:45,090 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:13:45,093 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:13:45] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:13:51,657 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:13:51,661 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:13:51] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:13:51,688 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:13:51,692 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:13:51] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:14:10,576 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:14:10,579 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:14:10] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:14:10,589 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:14:10,592 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:14:10] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:14:21,914 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:14:21,917 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:14:21] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:14:21,940 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:14:21,943 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:14:21] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:14:26,016 INFO app: Timeseries analysis image successfully encoded for vaccine sputnik!
+2022-05-18 23:14:26,017 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:14:26] "[35m[1mGET /timeseries/Sputnik HTTP/1.1[0m" 203 -
+2022-05-18 23:14:27,178 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:14:27,181 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:14:27] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:14:59,522 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:14:59,524 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:14:59] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:14:59,530 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:14:59,531 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:14:59] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:14,713 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:14,716 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:14] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:14,722 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:14,723 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:14] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:24,876 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:24,880 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:24] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:24,881 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:24,883 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:24] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:31,712 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:31,713 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:31] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:35,795 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:35,797 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:35] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:35,807 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:35,808 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:35] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:43,780 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:43,782 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:43] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:43,791 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:43,792 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:43] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:45,540 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:45,542 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:45] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:45,554 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:45,555 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:45] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:58,832 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:58,834 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:58] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:15:58,838 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:15:58,839 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:15:58] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:16:01,119 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:16:01,120 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:16:01] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:16:01,125 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:16:01,126 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:16:01] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:16:21,305 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:16:21,307 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:16:21] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:16:21,328 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:16:21,333 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:16:21] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:16:26,104 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:16:26,109 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:16:26] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:16:29,777 INFO app: Timeseries analysis image successfully encoded for vaccine sputnik!
+2022-05-18 23:16:29,778 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:16:29] "[35m[1mGET /timeseries/Sputnik HTTP/1.1[0m" 203 -
+2022-05-18 23:16:31,896 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:16:31,899 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:16:31] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:16:37,718 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:16:37,721 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:16:37] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:20:48,931 INFO app: Timeseries analysis image successfully encoded for vaccine sputnik!
+2022-05-18 23:20:48,933 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:20:48] "[35m[1mGET /timeseries/Sputnik HTTP/1.1[0m" 203 -
+2022-05-18 23:20:49,322 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:20:49,324 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:20:49] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:20:49,929 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-18 23:20:49,932 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:20:49] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:20:53,549 INFO app: Wordcloud image successfully encoded for vaccine biontech!
+2022-05-18 23:20:53,553 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:20:53] "GET /wordcloud/BioNTech HTTP/1.1" 200 -
+2022-05-18 23:20:55,757 INFO app: Wordcloud image successfully encoded for vaccine sinopharm!
+2022-05-18 23:20:55,760 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:20:55] "GET /wordcloud/Sinopharm HTTP/1.1" 200 -
+2022-05-18 23:20:56,427 INFO app: Timeseries analysis image successfully encoded for vaccine sinopharm!
+2022-05-18 23:20:56,428 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:20:56] "[35m[1mGET /timeseries/Sinopharm HTTP/1.1[0m" 203 -
+2022-05-18 23:20:57,494 INFO app: Positive and negative tweets available for vaccine  sinopharm!
+2022-05-18 23:20:57,496 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:20:57] "GET /tweets/Sinopharm HTTP/1.1" 200 -
+2022-05-18 23:20:59,684 INFO app: Positive and negative tweets available for vaccine  pfizer!
+2022-05-18 23:20:59,687 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:20:59] "GET /tweets/Pfizer HTTP/1.1" 200 -
+2022-05-18 23:21:01,671 INFO app: Positive and negative tweets available for vaccine  moderna!
+2022-05-18 23:21:01,673 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:21:01] "GET /tweets/Moderna HTTP/1.1" 200 -
+2022-05-18 23:21:03,185 INFO app: Positive and negative tweets available for vaccine  sputnik!
+2022-05-18 23:21:03,207 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:21:03] "GET /tweets/Sputnik HTTP/1.1" 200 -
+2022-05-18 23:21:04,836 INFO app: Positive and negative tweets available for vaccine  moderna!
+2022-05-18 23:21:04,838 INFO werkzeug: 127.0.0.1 - - [18/May/2022 23:21:04] "GET /tweets/Moderna HTTP/1.1" 200 -
+2022-05-20 15:21:33,588 INFO werkzeug:  * Running on http://127.0.0.1:5050/ (Press CTRL+C to quit)
+2022-05-20 15:21:37,558 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:21:37] "[33mGET /wordcloud/ HTTP/1.1[0m" 404 -
+2022-05-20 15:21:40,473 INFO app: Wordcloud image successfully encoded for vaccine biontech!
+2022-05-20 15:21:40,478 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:21:40] "GET /wordcloud/BioNTech HTTP/1.1" 200 -
+2022-05-20 15:21:57,538 INFO app: Wordcloud image successfully encoded for vaccine sputnik!
+2022-05-20 15:21:57,541 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:21:57] "GET /wordcloud/Sputnik HTTP/1.1" 200 -
+2022-05-20 15:21:59,821 INFO app: Wordcloud image successfully encoded for vaccine sinopharm!
+2022-05-20 15:21:59,824 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:21:59] "GET /wordcloud/Sinopharm HTTP/1.1" 200 -
+2022-05-20 15:22:01,280 INFO app: Timeseries analysis image successfully encoded for vaccine sinopharm!
+2022-05-20 15:22:01,281 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:22:01] "[35m[1mGET /timeseries/Sinopharm HTTP/1.1[0m" 203 -
+2022-05-20 15:22:04,456 INFO app: Timeseries analysis image successfully encoded for vaccine sinovac!
+2022-05-20 15:22:04,457 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:22:04] "[35m[1mGET /timeseries/Sinovac HTTP/1.1[0m" 203 -
+2022-05-20 15:22:05,747 INFO app: Wordcloud image successfully encoded for vaccine sinovac!
+2022-05-20 15:22:05,750 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:22:05] "GET /wordcloud/Sinovac HTTP/1.1" 200 -
+2022-05-20 15:22:06,262 INFO app: Timeseries analysis image successfully encoded for vaccine sinovac!
+2022-05-20 15:22:06,263 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:22:06] "[35m[1mGET /timeseries/Sinovac HTTP/1.1[0m" 203 -
+2022-05-20 15:22:06,928 INFO app: Positive and negative tweets available for vaccine  sinovac!
+2022-05-20 15:22:06,930 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:22:06] "GET /tweets/Sinovac HTTP/1.1" 200 -
+2022-05-20 15:22:07,845 INFO app: Timeseries analysis image successfully encoded for vaccine sinovac!
+2022-05-20 15:22:07,845 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:22:07] "[35m[1mGET /timeseries/Sinovac HTTP/1.1[0m" 203 -
+2022-05-20 15:22:11,283 INFO app: Timeseries analysis image successfully encoded for vaccine moderna!
+2022-05-20 15:22:11,284 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:22:11] "[35m[1mGET /timeseries/Moderna HTTP/1.1[0m" 203 -
+2022-05-20 15:22:11,730 INFO app: Wordcloud image successfully encoded for vaccine moderna!
+2022-05-20 15:22:11,734 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:22:11] "GET /wordcloud/Moderna HTTP/1.1" 200 -
+2022-05-20 15:22:13,976 INFO app: Positive and negative tweets available for vaccine  moderna!
+2022-05-20 15:22:13,978 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:22:13] "GET /tweets/Moderna HTTP/1.1" 200 -
+2022-05-20 15:24:40,060 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:24:40] "[33mGET /tweets/ HTTP/1.1[0m" 404 -
+2022-05-20 15:25:16,487 INFO app: Positive and negative tweets available for vaccine  biontech!
+2022-05-20 15:25:16,489 INFO werkzeug: 127.0.0.1 - - [20/May/2022 15:25:16] "GET /tweets/BioNTech HTTP/1.1" 200 -
