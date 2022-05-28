@@ -188,4 +188,4 @@ def get_negative_neutral_positive_wordcloud(vaccine):
 
 
 if __name__ == '__main__':
-    app.run(debug=False, port=5050)
+    app.run(debug=False, host='0.0.0.0', port=5050)
