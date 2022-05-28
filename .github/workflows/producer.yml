@@ -5,9 +5,9 @@ name: producer
 
 on:
   push:
-    branches: [ main ]
+    branches: [ assignment4/producer ]
   pull_request:
-    branches: [ main ]
+    branches: [ assignment4/producer ]
 
 permissions:
   contents: read
