@@ -1,7 +1,9 @@
 name: Test-Notebooks
 
 # Run every time a new commit is pushed
-on: push
+on: 
+  push:
+    branches: [ private/assignment4 ]
 
 jobs:
   # Set the job key
