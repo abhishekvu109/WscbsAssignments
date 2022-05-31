@@ -60,7 +60,7 @@ def vaccine_data_processing(vaccine):
         drop=True).head(n=10).to_json(vaccine+r'_10_most_positive_tweets.json')
     fig = px.bar(vaccine_timeline, x='date', y='count', color='polarity')
     fig.show()
-    fig.write_image(vaccine+"_timeseries_polarity_optimised_dataset.png")
+    # fig.write_image(vaccine+"_timeseries_polarity_optimised_dataset.png")
     wordcloud_df = vaccine_df
     wordcloud_df['words'] = vaccine_df.description.apply(lambda x:re.findall(r'\w+', x ))
     get_smart_clouds(wordcloud_df).savefig(vaccine+"_sentiment_wordclouds_optimised_dataset.png", bbox_inches="tight")
@@ -191,6 +191,7 @@ def get_log_likelihood(doc1, doc2):
     top_percent = int(0.1 * len(top_ratios))
     return top_ratios[:top_percent]
 
+
 # Function to generate a document based on likelihood values for words
 def get_scaled_list(log_list):
     counts = [int(x[1]*100000) for x in log_list]
@@ -234,7 +235,16 @@ def get_smart_clouds(df):
     return fig
 
 
+def validate_vaccine_name(passed_vaccine):
+    all_vax = ['covaxin', 'sinopharm', 'sinovac', 'moderna', 'pfizer', 'biontech', 'oxford', 'astrazeneca', 'sputnik']
+    return passed_vaccine in all_vax
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     vaccine = input("Please enter vaccine name for which you want the sentiment analysis computation: \n")
-    vaccine_data_processing(vaccine.lower())
+    if validate_vaccine_name(vaccine.lower()):
+        vaccine_data_processing(vaccine.lower())
+    else:
+        print("Please run the program again and enter a valid vaccine name for which you want the sentiment analysis "
+              "visualisation!\n")
