@@ -4,23 +4,18 @@ from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS, cross_origin
 import base64
 from pathlib import Path
-from pydblite import Base
-import data_operations as dops
 import logging
+import shutil
+
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 logging.basicConfig(filename='flask_console.log', level=logging.DEBUG,
                     format='%(asctime)s %(levelname)s %(name)s: %(message)s')
-db = Base('covidvaccinetweetanalysis.pdl', save_to_file=True)
 
-if db.exists():
-    db.open()
-else:
-    # db.create('id', 'long_url', 'short_url', 'user', 'expiry_time')
-    # db.create_index('id')
-    pass
+tweet_dir = 'data/tweets'
+images_dir = 'data/images'
 
 
 def return_response(return_data, status):
@@ -34,9 +29,7 @@ def return_response(return_data, status):
 @app.route('/')
 @cross_origin()
 def hello_world():  # put application's code here
-    # df=dops.prepare_data()
-    app.logger.info("Data successfully prepared!")
-    # dops.print_df(df)
+    app.logger.info("Home URL accessed!")
     return 'Hello World!'
 
 
@@ -54,7 +47,7 @@ def time_series_analysis(vaccine):
         value = 'astrazeneca'
     else:
         value = ''
-    file = Path("./images/" + value + "_timeseries_polarity_optimised_dataset.png")
+    file = Path(images_dir + "/" + value + "_timeseries_polarity_optimised_dataset.png")
     if file.is_file():
         with open(file, "rb") as image_file:
             encoded_string = base64.b64encode(image_file.read())
@@ -65,17 +58,23 @@ def time_series_analysis(vaccine):
     else:
         # response = make_response(jsonify(
         #     {"value": ''}), 404, )  # for null-case when there is no wordcloud file for that vaccine
+        src = './data/image_na.png'
+        dst = images_dir + '/' + vaccine + "_timeseries_polarity_optimised_dataset.png"
+        shutil.copy(src, dst)
         app.logger.info(
-            "Timeseries analysis image not available for vaccine " + vaccine.lower() + "! Need to compute for image generation...")
-    # response.headers["Content-Type"] = "application/json"
-        return return_response({"value": ""}, 404)
+            "Timeseries analysis image not available for vaccine " + vaccine.lower() + "! Showing the \'not "
+                                                                                       "available\' image...")
+        with open(dst, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read())
+        return return_response({"value": encoded_string.decode('utf-8')}, 404)
+        # return return_response({"value": ""}, 404)
 
 
 @app.route("/tweets/<string:vaccine>", methods=['GET'])
 @cross_origin()
 def get_negative_neutral_positive_tweets(vaccine):
     value = ''
-    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm'  or vaccine.lower() == 'sinovac':
+    if vaccine.lower() == 'covaxin' or vaccine.lower() == 'moderna' or vaccine.lower() == 'sputnik' or vaccine.lower() == 'sinopharm' or vaccine.lower() == 'sinovac':
         value = vaccine.lower()
 
     elif vaccine.lower() == 'pfizer' or vaccine.lower() == 'biontech':
@@ -92,19 +91,18 @@ def get_negative_neutral_positive_tweets(vaccine):
         # response = make_response(jsonify(
         #     {"value": ""}), 404, )  # for null-case when there is no wordcloud file for that vaccine
         app.logger.info(
-            "Positive and negative tweets not available for vaccine " + vaccine.lower() + "! Need to compute tweet JSON files...")
-    return return_response({"value": ""}, 404)
-    # response.headers["Content-Type"] = "application/json"
-    # return response
+            "Positive and negative tweets not available for vaccine " + vaccine.lower() + "! Need to compute tweet "
+                                                                                          "JSON files...")
+        return return_response({"value": ""}, 404)
 
 
 def custom_json_parsing(vaccine):
     store_negative_list = []
     store_positive_list = []
     # for negative tweets
-    file = Path('./tweets/'+vaccine+'_10_most_negative_tweets.json')
+    file = Path(tweet_dir + "/" +vaccine+'_10_most_negative_tweets.json')
     if file.is_file():
-        input_negative_file = open('./tweets/'+vaccine+'_10_most_negative_tweets.json')
+        input_negative_file = open(tweet_dir + "/" + vaccine +'_10_most_negative_tweets.json')
         json_array = json.load(input_negative_file)
         tweet_array = []
         pubdate_array = []
@@ -124,12 +122,12 @@ def custom_json_parsing(vaccine):
             store_details["date"] = pubdate_array[iterator]
             store_details["polarity"] = polarity_array[iterator]
             store_negative_list.append(store_details)
-
     # print(store_negative_list)
+
     # for positive tweets
-    file = Path('./tweets/' + vaccine + '_10_most_positive_tweets.json')
+    file = Path(tweet_dir + "/" + vaccine + '_10_most_positive_tweets.json')
     if file.is_file():
-        input_positive_file = open('./tweets/'+vaccine+'_10_most_positive_tweets.json')
+        input_positive_file = open(tweet_dir + "/" +vaccine+'_10_most_positive_tweets.json')
         json_array = json.load(input_positive_file)
         tweet_array = []
         pubdate_array = []
@@ -169,7 +167,7 @@ def get_negative_neutral_positive_wordcloud(vaccine):
         value = 'astrazeneca'
     else:
         value = ''
-    file = Path("./images/" + value + "_sentiment_wordclouds_optimised_dataset.png")
+    file = Path(images_dir + "/" + value + "_sentiment_wordclouds_optimised_dataset.png")
     if file.is_file():
         with open(file, "rb") as image_file:
             encoded_string = base64.b64encode(image_file.read())
@@ -178,14 +176,20 @@ def get_negative_neutral_positive_wordcloud(vaccine):
         app.logger.info("Wordcloud image successfully encoded for vaccine " + vaccine.lower() + "!")
         return return_response({"value": encoded_string.decode('utf-8')}, 200)
     else:
-        # response = make_response(jsonify(
-        #     {"value": ''}), 404, )  # for null-case when there is no wordcloud file for that vaccine
+        src = './data/image_na.png'
+        dst = images_dir + '/' + vaccine + "_sentiment_wordclouds_optimised_dataset.png"
+        shutil.copy(src, dst)
         app.logger.info(
-            "Wordcloud image not available for vaccine " + vaccine.lower() + "! Need to compute for image generation...")
-        return return_response({"value": ""}, 404)
+            "Wordcloud image not available for vaccine " + vaccine.lower() + "! Showing the \'not "
+                                                                                       "available\' image...")
+        with open(dst, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read())
+        return return_response({"value": encoded_string.decode('utf-8')}, 404)
     # response.headers["Content-Type"] = "application/json"
     # return response
 
 
 if __name__ == '__main__':
+    Path('./' + images_dir).mkdir(parents=True, exist_ok=True)
+    Path('./' + tweet_dir).mkdir(parents=True, exist_ok=True)
     app.run(debug=False, host='0.0.0.0', port=5050)
