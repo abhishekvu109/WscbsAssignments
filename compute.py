@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os, glob
+from pathlib import Path
 import re
 from textblob import TextBlob
 import plotly.express as px
@@ -14,26 +15,29 @@ from collections import Counter
 import nltk
 import math
 import random
+import shutil
+
 nltk.download('wordnet')
 nltk.download('stopwords')
 nltk.download('omw-1.4')
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 
-
 stop_words = set(stopwords.words('english'))
 stop_words.add("amp")
 pd.options.mode.chained_assignment = None
 all_vax = ['covaxin', 'sinopharm', 'sinovac', 'moderna', 'pfizer', 'biontech', 'oxford', 'astrazeneca', 'sputnik']
+tweet_dir = 'data/tweets'
+images_dir = 'data/images'
 
 
-def vaccine_data_processing(vaccine):
+def vaccine_data_processing(vaccine, input_file):
     file_dir = './archive/'
     file = 'vaccine 09.csv'
     # Make a list of dataframes while adding a stick_ticker column
     # dataframes = [pd.read_csv(file, encoding='latin1').assign(vaccine_file=os.path.basename(file).strip(".csv")) for
     #              file in files]
-    df = pd.read_csv(file_dir+file, encoding='latin1', quotechar='"', delimiter=',')
+    df = pd.read_csv(input_file, encoding='latin1', quotechar='"', delimiter=',')
     # data pre-processing and cleaning
     df.drop(columns=['id', 'tweetid', 'guid', 'link', 'source', 'lang',
                      'quoted_text', 'tweet_type', 'in_reply_to_screen_name',
@@ -55,15 +59,22 @@ def vaccine_data_processing(vaccine):
     df['sentiment'] = np.select(criteria, values, 0)
     vaccine_df, vaccine_timeline = filter_by_vaccy(df, [vaccine])
     vaccine_df.sort_values(by='polarity', ascending=True)[['description', 'pubdate', 'polarity']].reset_index(
-        drop=True).head(n=10).to_json(vaccine+r'_10_most_negative_tweets.json')
+        drop=True).head(n=10).to_json(tweet_dir + '/' + vaccine + r'_10_most_negative_tweets.json')
     vaccine_df.sort_values(by='polarity', ascending=False)[['description', 'pubdate', 'polarity']].reset_index(
-        drop=True).head(n=10).to_json(vaccine+r'_10_most_positive_tweets.json')
+        drop=True).head(n=10).to_json(tweet_dir + '/' + vaccine + r'_10_most_positive_tweets.json')
     fig = px.bar(vaccine_timeline, x='date', y='count', color='polarity')
     fig.show()
-    # fig.write_image(vaccine+"_timeseries_polarity_optimised_dataset.png")
+    # fig.write_image(images_dir + '/' + vaccine+"_timeseries_polarity_optimised_dataset.png")
     wordcloud_df = vaccine_df
-    wordcloud_df['words'] = vaccine_df.description.apply(lambda x:re.findall(r'\w+', x ))
-    get_smart_clouds(wordcloud_df).savefig(vaccine+"_sentiment_wordclouds_optimised_dataset.png", bbox_inches="tight")
+    wordcloud_df['words'] = vaccine_df.description.apply(lambda x: re.findall(r'\w+', x))
+    wordcloud_fig = get_smart_clouds(wordcloud_df)
+    if wordcloud_fig is None:
+        src = './data/image_na.png'
+        dst = images_dir + '/' + vaccine + "_sentiment_wordclouds_optimised_dataset.png"
+        shutil.copy(src, dst)
+    else:
+        wordcloud_fig.savefig(images_dir + '/' + vaccine + "_sentiment_wordclouds_optimised_dataset.png",
+                              bbox_inches="tight")
 
 
 # use regular expressions to strip each tweet of mentions, hashtags, retweet information, and links
@@ -72,6 +83,7 @@ def clean_tweet_text(text):
     text = re.sub(r'#', '', text)
     text = re.sub(r'RT[\s]+', '', text)
     text = re.sub(r'https?:\/\/\S+', '', text)
+    text = re.sub(r'http?:\/\/\S+', '', text)
     text = text.lower()
     return text
 
@@ -98,23 +110,29 @@ def filter_by_vaccy(df, vax):
 def flatten_list(l):
     return [x for y in l for x in y]
 
+
 def is_acceptable(word: str):
     return word not in stop_words and len(word) > 2
 
+
 # Color coding our wordclouds
-def red_color_func(word, font_size, position, orientation, random_state=None,**kwargs):
+def red_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
     return f"hsl(0, 100%, {random.randint(25, 75)}%)"
 
-def green_color_func(word, font_size, position, orientation, random_state=None,**kwargs):
+
+def green_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
     return f"hsl({random.randint(90, 150)}, 100%, 30%)"
 
-def yellow_color_func(word, font_size, position, orientation, random_state=None,**kwargs):
+
+def yellow_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
     return f"hsl(42, 100%, {random.randint(25, 50)}%)"
+
 
 # Reusable function to generate word clouds
 def generate_word_clouds(neg_doc, neu_doc, pos_doc):
     # Display the generated image:
-    fig, axes = plt.subplots(1,3, figsize=(20,10))
+
+    fig, axes = plt.subplots(1, 3, figsize=(20, 10))
 
     wordcloud_neg = WordCloud(max_font_size=50, max_words=100, background_color="white").generate(" ".join(neg_doc))
     axes[0].imshow(wordcloud_neg.recolor(color_func=red_color_func, random_state=3), interpolation='bilinear')
@@ -132,8 +150,9 @@ def generate_word_clouds(neg_doc, neu_doc, pos_doc):
     axes[2].axis("off")
 
     plt.tight_layout()
-#     plt.show();
+    #     plt.show();
     return fig
+
 
 def get_top_percent_words(doc, percent):
     # Returns a list of "top-n" most frequent words in a list
@@ -142,6 +161,7 @@ def get_top_percent_words(doc, percent):
     top_n_words = [x[0] for x in counter]
     # print(top_n_words)
     return top_n_words
+
 
 def clean_document(doc):
     spell = SpellChecker()
@@ -168,22 +188,23 @@ def clean_document(doc):
 
     return clean_words
 
+
 def get_log_likelihood(doc1, doc2):
     doc1_counts = Counter(doc1)
     doc1_freq = {
-        x: doc1_counts[x]/len(doc1)
+        x: doc1_counts[x] / len(doc1)
         for x in doc1_counts
     }
 
     doc2_counts = Counter(doc2)
     doc2_freq = {
-        x: doc2_counts[x]/len(doc2)
+        x: doc2_counts[x] / len(doc2)
         for x in doc2_counts
     }
 
     doc_ratios = {
         # 1 is added to prevent division by 0
-        x: math.log((doc1_freq[x] +1 )/(doc2_freq[x]+1))
+        x: math.log((doc1_freq[x] + 1) / (doc2_freq[x] + 1))
         for x in doc1_freq if x in doc2_freq
     }
 
@@ -194,25 +215,24 @@ def get_log_likelihood(doc1, doc2):
 
 # Function to generate a document based on likelihood values for words
 def get_scaled_list(log_list):
-    counts = [int(x[1]*100000) for x in log_list]
+    counts = [int(x[1] * 100000) for x in log_list]
     words = [x[0] for x in log_list]
     cloud = []
     for i, word in enumerate(words):
-        cloud.extend([word]*counts[i])
+        cloud.extend([word] * counts[i])
     # Shuffle to make it more "real"
     random.shuffle(cloud)
     return cloud
 
 
 def get_smart_clouds(df):
-
-    neg_doc = flatten_list(df[df['sentiment']=='negative']['words'])
+    neg_doc = flatten_list(df[df['sentiment'] == 'negative']['words'])
     neg_doc = [x for x in neg_doc if is_acceptable(x)]
 
-    pos_doc = flatten_list(df[df['sentiment']=='positive']['words'])
+    pos_doc = flatten_list(df[df['sentiment'] == 'positive']['words'])
     pos_doc = [x for x in pos_doc if is_acceptable(x)]
 
-    neu_doc = flatten_list(df[df['sentiment']=='neutral']['words'])
+    neu_doc = flatten_list(df[df['sentiment'] == 'neutral']['words'])
     neu_doc = [x for x in neu_doc if is_acceptable(x)]
 
     # Clean all the documents
@@ -231,20 +251,27 @@ def get_smart_clouds(df):
     pos_doc_final = get_scaled_list(top_pos_words)
 
     # Visualise our synthetic corpus
-    fig = generate_word_clouds(neg_doc_final, neu_doc_final, pos_doc_final)
-    return fig
+    if not neg_doc_final and not neu_doc_final and not pos_doc_final:
+        return None
+    else:
+        fig = generate_word_clouds(neg_doc_final, neu_doc_final, pos_doc_final)
+        return fig
 
 
 def validate_vaccine_name(passed_vaccine):
-    all_vax = ['covaxin', 'sinopharm', 'sinovac', 'moderna', 'pfizer', 'biontech', 'oxford', 'astrazeneca', 'sputnik']
+    all_vax = ['covaxin', 'sinopharm', 'sinovac', 'moderna', 'pfizer', 'biontech', 'oxford', 'astrazeneca', 'sputnik',
+               'dummy']
     return passed_vaccine in all_vax
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    Path('./' + images_dir).mkdir(parents=True, exist_ok=True)
+    Path('./' + tweet_dir).mkdir(parents=True, exist_ok=True)
+    input_file = input("Please provide the absolute path of .csv containing tweets on which you'd like analysis: \n")
     vaccine = input("Please enter vaccine name for which you want the sentiment analysis computation: \n")
     if validate_vaccine_name(vaccine.lower()):
-        vaccine_data_processing(vaccine.lower())
+        vaccine_data_processing(vaccine.lower(), input_file)
     else:
         print("Please run the program again and enter a valid vaccine name for which you want the sentiment analysis "
               "visualisation!\n")
