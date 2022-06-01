@@ -18,5 +18,15 @@ COPY . .
 # build app for production with minification
 RUN npm run build
 
-EXPOSE 80
+EXPOSE 8080
 CMD [ "http-server", "dist" ]
+
+
+
+
+# ------------------------------------------
+# Docker build instructions below:
+# ------------------------------------------
+# docker build -t vue-js-consumer:latest .
+# docker run -d -p 8080:8080 --rm --name dockerize-vuejs-app vue-js-consumer
+# ------------------------------------------
