@@ -11,8 +11,7 @@
             <select name="end-time" v-model="vaccine"
               class="bg-gray-100 shadow-xl rounded-md py-2 px-8 focus:outline-none">
               <option value="" disabled selected hidden>Vaccine</option>
-              <option value="Pfizer">Pfizer</option>
-              <option value="BioNTech">BioNTech</option>
+              <option value="Pfizer">Pfizer/BioNTech</option>
               <option value="Moderna">Moderna</option>
               <option value="AstraZeneca">AstraZeneca</option>
               <option value="Sputnik">Sputnik V</option>
@@ -25,7 +24,7 @@
         <div class="flex justify-around">
             <router-link :class="routeName == 'WordCloud' ? 'nav-active-btn' : 'nav-disactivated-btn'" 
               :to="{name: 'WordCloud' }">Word cloud</router-link>
-            <router-link :class="routeName == 'TimeSerious' ? 'nav-active-btn' : 'nav-disactivated-btn'" 
+            <router-link :class="routeName == 'TimeSeries' ? 'nav-active-btn' : 'nav-disactivated-btn'" 
               :to="{name: 'TimeSeries' }">Time series</router-link>
             <router-link :class="routeName == 'TopTen' ? 'nav-active-btn' : 'nav-disactivated-btn'" 
               :to="{name: 'TopTen' }">Top 10</router-link>
