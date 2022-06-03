@@ -9,7 +9,6 @@ WORKDIR /app
 
 # install updates and Python dependencies
 RUN apt-get update -y && apt-get install -y python3-pip pip python3.10-dev
-# RUN apk add python-pip python-dev --quiet
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
