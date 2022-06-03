@@ -4,8 +4,8 @@
             {{ getVaccine }}
         </div>
 
-        <div v-if="getTopten">
-            <div class="mt-5 mb-2 text-2xl text-gray-600">Top 10 most positively charged tweets</div>
+        <div v-if="toptens" class="mb-20">
+            <div class="mt-5 text-2xl text-gray-600">Top 10 most positively charged tweets</div>
             <table class="w-full border-collapse border border-gray-400 table-auto">
                 <thead>
                     <tr>
@@ -14,7 +14,7 @@
                         <th class="border border-gray-300 bg-green-50 w-1/4">Date</th>
                     </tr>
                 </thead>
-                <tbody :key="index" v-for="(tweet,index) in getTopten.positive">
+                <tbody :key="index" v-for="(tweet,index) in toptens.positive">
                     <tr>
                         <td class="border border-gray-400 p-1">{{ tweet.tweet }}</td>
                         <td class="border border-gray-400 p-1">{{ tweet.polarity }}</td>
@@ -23,7 +23,7 @@
                 </tbody>
             </table>
 
-            <div class="mt-10 mb-2 text-2xl text-gray-600">Top 10 most negatively charged tweets</div>
+            <div class="mt-12 text-2xl text-gray-600">Top 10 most negatively charged tweets</div>
             <table class="w-full border-collapse border border-gray-400 table-auto mb-10">
                 <thead>
                     <tr>
@@ -32,7 +32,7 @@
                         <th class="border border-gray-300 bg-red-50 w-1/4">Date</th>
                     </tr>
                 </thead>
-                <tbody :key="index" v-for="(tweet,index) in getTopten.negative">
+                <tbody :key="index" v-for="(tweet,index) in toptens.negative">
                     <tr>
                         <td class="border border-gray-400 p-1">{{ tweet.tweet }}</td>
                         <td class="border border-gray-400 p-1">{{ tweet.polarity }}</td>
@@ -45,21 +45,39 @@
 </template>
 
 <script>
-import { mapGetters,mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
+import Pfizer_tt from '../assets/Pfizer_tt.json'
+import Moderna_tt from '../assets/Pfizer_tt.json'
+import AstraZeneca_tt from '../assets/Pfizer_tt.json'
+import Sputnik_tt from '../assets/Pfizer_tt.json'
+import Sinovac_tt from '../assets/Pfizer_tt.json'
+import Sinopharm_tt from '../assets/Pfizer_tt.json'
 
 export default {
     name: 'TopTen',
     computed: {
-        ...mapGetters('vaccine', ['getVaccine','getTopten'])
+        ...mapGetters('vaccine', ['getVaccine'])
+    },
+    data() {
+        return {
+            toptens: Object
+        }
     },
     methods: {
-        ...mapActions('vaccine', ['fetchTopten'])
+        getJson() {
+            if (this.getVaccine == 'Pfizer') this.toptens = Pfizer_tt;
+            else if (this.getVaccine == 'Moderna') this.toptens = Moderna_tt;
+            else if (this.getVaccine == 'AstraZeneca') this.toptens = AstraZeneca_tt;
+            else if (this.getVaccine == 'Sputnik') this.toptens = Sputnik_tt;
+            else if (this.getVaccine == 'Sinovac') this.toptens = Sinovac_tt;
+            else if (this.getVaccine == 'Sinopharm') this.toptens = Sinopharm_tt;
+        }
     },
     watch: {
         getVaccine: {
             immediate: true,
             handler () {
-                this.fetchTopten()
+                this.getJson()
             }
         },
     }
