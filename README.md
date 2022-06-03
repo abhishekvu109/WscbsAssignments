@@ -50,3 +50,17 @@ If you want to checkout the actual files where the frontend was developed, pleas
 - `App.vue` : is the root .vue file of the application
 - `main.js` : where the app is created and binded with other libraries
 - `index.css` : used for design layout of the page
+
+
+## Screenshots
+
+Here you can see some screenshots of the website:
+
+### Wordcloud
+![wordcloud](/screenshots/wordcloud.png)
+
+### Timeseries
+![wordcloud](/screenshots/timeseries.png)
+
+### Top ten tweets
+![wordcloud](/screenshots/topten.png)
