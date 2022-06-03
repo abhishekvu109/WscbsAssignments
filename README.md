@@ -24,7 +24,6 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-<<<<<<< HEAD
 ## Docker
 
 ### Build
@@ -39,6 +38,8 @@ To run the application it should be in the Brane network.
 ```
 sudo docker run --name webapp-consumer1 -d -p 8080:8080 --mount src=/home/student101/project/data,target=/data/,type=bind --network brane webapp-consumer
 ```
+-- mount: Mount shared volume which can be shared across Brane packages and the Docker services
+-- network: To keep them in the Brane network for inter-service communication
 
 ## Setup
 
