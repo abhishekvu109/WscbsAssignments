@@ -15,10 +15,13 @@ const getters = {
 }
 
 const actions = {
+    // function for setting the vaccine
     addVaccine( { commit }, vaccine ) {
         sessionStorage.setItem('vaccine', vaccine)
         commit( 'setVaccine', vaccine );
     },
+
+    // function for fetching the wordcloud
     async fetchWordcloud ( { commit } ) {
         await axios.get(`http://localhost:5050/wordcloud/`+state.vaccine).then((response)=> {
             if(response.data) {
@@ -26,6 +29,8 @@ const actions = {
             }
         })
     },
+
+    // function for fetching the time series graph
     async fetchTimeserious ( { commit } ) {
         await axios.get(`http://localhost:5050/timeseries/`+state.vaccine).then((response)=> {
             if(response.data) {
@@ -33,6 +38,8 @@ const actions = {
             }
         })
     },
+
+    // function for fetching the top ten positive and negative tweets
     async fetchTopten( { commit } ) {
         await axios.get(`http://localhost:5050/tweets/`+state.vaccine).then((response)=> {
             if(response.data) {
