@@ -23,6 +23,13 @@ nltk.download('omw-1.4')
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 
+
+## @package compute
+#  This module is used for computing the information for provided vaccine name.
+#  The computation consists of data-processing using pandas, generating time-series analysis and word clouds for
+#  input vaccine name.
+
+
 stop_words = set(stopwords.words('english'))
 stop_words.add("amp")
 pd.options.mode.chained_assignment = None
@@ -32,11 +39,12 @@ images_dir = 'data/images'
 
 
 def vaccine_data_processing(vaccine, input_file):
-    file_dir = './archive/'
-    file = 'vaccine 09.csv'
-    # Make a list of dataframes while adding a stick_ticker column
-    # dataframes = [pd.read_csv(file, encoding='latin1').assign(vaccine_file=os.path.basename(file).strip(".csv")) for
-    #              file in files]
+    ##
+    # @brief Perform data-processing on provided input-file and generate information about the supplied vaccine.
+    #
+    # @param vaccine vaccine-name supplied
+    # @param input_file input-file having data-set consisting of tweets about COVID-19 vaccines
+    #
     df = pd.read_csv(input_file, encoding='latin1', quotechar='"', delimiter=',')
     # data pre-processing and cleaning
     df.drop(columns=['id', 'tweetid', 'guid', 'link', 'source', 'lang',
@@ -79,6 +87,12 @@ def vaccine_data_processing(vaccine, input_file):
 
 # use regular expressions to strip each tweet of mentions, hashtags, retweet information, and links
 def clean_tweet_text(text):
+    ##
+    # @brief Perform cleansing of tweets from the provided input-file to strip unnecessary elements
+    # (mentions, hashtags, retweet information, and links)
+    #
+    # @param text sentence(s) to be sanitised
+    #
     text = re.sub(r'@\w+', '', text)
     text = re.sub(r'#', '', text)
     text = re.sub(r'RT[\s]+', '', text)
@@ -91,6 +105,13 @@ def clean_tweet_text(text):
 # Function to filter the data to a single vaccine and plot the timeline Note: a lot of the tweets seem to contain
 # hashtags for multiple vaccines even though they are specifically referring to one vaccine-- not very helpful!
 def filter_by_vaccy(df, vax):
+    ##
+    # @brief Filter the tweets and other info from data-frame per vaccine
+    # values-included: ['date', 'count', 'polarity', 'retweet_count', 'favorite_count', 'subjectivity']
+    #
+    # @param df data-frame
+    # @param vax input vaccine-name
+    #
     df_filt = pd.DataFrame()
     for v in vax:
         df_filt = df_filt.append(df[df['description'].str.lower().str.contains(v)])
@@ -108,28 +129,52 @@ def filter_by_vaccy(df, vax):
 
 # Advanced word-cloud (positive, negative and neutral separation)
 def flatten_list(l):
+    ##
+    # @brief Flattens the list
+    #
+    # @param l list to be flattened
+    #
     return [x for y in l for x in y]
 
 
 def is_acceptable(word: str):
+    ##
+    # @brief Check if the input word is not a stopword (e.g., a, an, the), and hence is acceptable
+    #
+    # @param word input-word
+    #
     return word not in stop_words and len(word) > 2
 
 
 # Color coding our wordclouds
 def red_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+    ##
+    # @brief set HSL (Hue Lightness Saturation) model as red
+    #
     return f"hsl(0, 100%, {random.randint(25, 75)}%)"
 
 
 def green_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+    ##
+    # @brief set HSL (Hue Lightness Saturation) model as green
+    #
     return f"hsl({random.randint(90, 150)}, 100%, 30%)"
 
 
 def yellow_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+    ##
+    # @brief set HSL (Hue Lightness Saturation) model as yellow
+    #
     return f"hsl(42, 100%, {random.randint(25, 50)}%)"
 
 
 # Reusable function to generate word clouds
 def generate_word_clouds(neg_doc, neu_doc, pos_doc):
+    ##
+    # @brief generate word cloud based on the supplied list of negative words, neutral words and positive words
+    # @param neg_doc consists of negative words
+    # @param neu_doc consists of neutral words
+    # @param pos_doc consists of positive words
     # Display the generated image:
 
     fig, axes = plt.subplots(1, 3, figsize=(20, 10))
@@ -153,9 +198,14 @@ def generate_word_clouds(neg_doc, neu_doc, pos_doc):
     #     plt.show();
     return fig
 
-
+# Returns a list of "top-n" most frequent words in a list
 def get_top_percent_words(doc, percent):
-    # Returns a list of "top-n" most frequent words in a list
+    ##
+    # @brief get top N percentage of words which are most frequent
+    #
+    # @param doc document from which the top N percent of frequent words are to be identified
+    # @param N top N percent frequent words to be identified
+    #
     top_n = int(percent * len(set(doc)))
     counter = Counter(doc).most_common(top_n)
     top_n_words = [x[0] for x in counter]
@@ -164,6 +214,11 @@ def get_top_percent_words(doc, percent):
 
 
 def clean_document(doc):
+    ##
+    # @brief Performs the cleansing of data by removing stop words and lemmatizing the words
+    #
+    # @param doc document to be cleaned
+    #
     spell = SpellChecker()
     lemmatizer = WordNetLemmatizer()
 
@@ -188,8 +243,14 @@ def clean_document(doc):
 
     return clean_words
 
-
+# Provides a measure of how well a particular model fits the data;
 def get_log_likelihood(doc1, doc2):
+    ##
+    # @brief Provides a measure of how well a particular model fits the data;
+    #
+    # @param doc1 list to be compared another list
+    # @param doc2 list compared with
+    #
     doc1_counts = Counter(doc1)
     doc1_freq = {
         x: doc1_counts[x] / len(doc1)
@@ -215,6 +276,11 @@ def get_log_likelihood(doc1, doc2):
 
 # Function to generate a document based on likelihood values for words
 def get_scaled_list(log_list):
+    ##
+    # @brief Function to generate a document based on likelihood values for words
+    #
+    # @param log_list list consisting of words and likelihood values
+    #
     counts = [int(x[1] * 100000) for x in log_list]
     words = [x[0] for x in log_list]
     cloud = []
@@ -226,6 +292,12 @@ def get_scaled_list(log_list):
 
 
 def get_smart_clouds(df):
+    ##
+    # @brief Retrieve smart cloud from the data-frame by splitting it into positive, neutral and negative words
+    # from the dataset.
+    #
+    # @param df data-frame supplied
+    #
     neg_doc = flatten_list(df[df['sentiment'] == 'negative']['words'])
     neg_doc = [x for x in neg_doc if is_acceptable(x)]
 
@@ -259,12 +331,18 @@ def get_smart_clouds(df):
 
 
 def validate_vaccine_name(passed_vaccine):
+    ##
+    # @brief Validates the input vaccine parameter against pre-defined accepted vaccines.
+    #
+    # @param passed_vaccine vaccine-name supplied
+    #
     all_vax = ['covaxin', 'sinopharm', 'sinovac', 'moderna', 'pfizer', 'biontech', 'oxford', 'astrazeneca', 'sputnik',
                'dummy']
     return passed_vaccine in all_vax
 
 
-# Press the green button in the gutter to run the script.
+# Accept the vaccine name as input, validate whether it is appropriate, and
+# generate top tweets, time-series and word cloud for the supplied vaccine.
 if __name__ == '__main__':
     Path('./' + images_dir).mkdir(parents=True, exist_ok=True)
     Path('./' + tweet_dir).mkdir(parents=True, exist_ok=True)
