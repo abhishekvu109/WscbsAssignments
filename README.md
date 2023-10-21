@@ -1,4 +1,4 @@
-# URL Shortener
+# URL Shortener (Like Tiny URL)
 
 ## Install JAVA-11 or above
 
